@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Close Social — Client Intake Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e4e2dd;
+    --black: #282828;
+    --sky: #66c7ff;
+    --steel: #4892bc;
+    --mid: #6B6B6B;
+    --soft: #d6d3cd;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 42vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 6vw 3.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: 'CS';
+    position: absolute;
+    top: -2rem;
+    right: 4vw;
+    font-family: 'Playfair Display', serif;
+    font-size: 22vw;
+    color: rgba(72,146,188,0.07);
+    pointer-events: none;
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .logo {
+    position: absolute;
+    top: 2rem;
+    left: 6vw;
+    line-height: 1;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0.1s;
+  }
+
+  .logo-close {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--black);
+    display: block;
+    line-height: 1;
+  }
+
+  .logo-socials {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.48rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: block;
+    margin-top: 0.08rem;
+    width: 100%;
+    text-align: justify;
+    text-align-last: justify;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.25s;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.08;
+    max-width: 620px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--steel);
+  }
+
+  .hero-sub {
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--mid);
+    max-width: 500px;
+    line-height: 1.75;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.55s;
+  }
+
+  /* INTRO BANNER */
+  .intro-banner {
+    background: var(--black);
+    color: var(--white);
+    padding: 1.6rem 6vw;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.7s;
+  }
+
+  .intro-tag {
+    background: var(--sky);
+    color: var(--black);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .intro-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+  }
+
+  /* FORM SECTIONS */
+  .form-body {
+    padding: 5rem 6vw;
+    max-width: 860px;
+  }
+
+  .form-section {
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .form-section:nth-child(1) { animation-delay: 0.8s; }
+  .form-section:nth-child(2) { animation-delay: 0.95s; }
+  .form-section:nth-child(3) { animation-delay: 1.1s; }
+  .form-section:nth-child(4) { animation-delay: 1.25s; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--steel);
+  }
+
+  /* FORM FIELDS */
+  .field {
+    margin-bottom: 1.8rem;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  .field label .optional {
+    font-weight: 300;
+    color: var(--mid);
+    font-size: 0.75rem;
+    margin-left: 0.4rem;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: var(--steel);
+    box-shadow: 0 0 0 3px rgba(72,146,188,0.1);
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(0,0,0,0.28);
+    font-style: italic;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.7;
+  }
+
+  .field-hint {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  /* RADIO / CHECKBOX GROUPS */
+  .options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .option-item:hover {
+    background: var(--soft);
+    border-color: rgba(0,0,0,0.18);
+  }
+
+  .option-item input[type="radio"],
+  .option-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: var(--steel);
+    cursor: pointer;
+  }
+
+  .option-item span {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--black);
+    line-height: 1.4;
+  }
+
+  /* TWO COLUMN */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  /* DARK SECTION */
+  .dark-section {
+    background: var(--black);
+    padding: 5rem 6vw;
+  }
+
+  .dark-section .section-label {
+    color: rgba(255,255,255,0.35);
+  }
+
+  .dark-section .section-label::after {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .dark-section .section-title {
+    color: var(--white);
+  }
+
+  .dark-section .field label {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .dark-section .field input,
+  .dark-section .field textarea {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+    color: var(--white);
+  }
+
+  .dark-section .field input:focus,
+  .dark-section .field textarea:focus {
+    border-color: var(--sky);
+    box-shadow: 0 0 0 3px rgba(102,199,255,0.1);
+  }
+
+  .dark-section .field input::placeholder,
+  .dark-section .field textarea::placeholder {
+    color: rgba(255,255,255,0.2);
+  }
+
+  .dark-section .field-hint {
+    color: rgba(255,255,255,0.35);
+  }
+
+  .dark-section .option-item {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .dark-section .option-item:hover {
+    background: rgba(255,255,255,0.09);
+  }
+
+  .dark-section .option-item span {
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* WHITE SECTION */
+  .white-section {
+    background: var(--white);
+    padding: 5rem 6vw;
+  }
+
+  /* SUBMIT */
+  .submit-section {
+    background: var(--cream);
+    padding: 4rem 6vw 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .submit-note {
+    font-size: 0.82rem;
+    color: var(--mid);
+    max-width: 460px;
+    line-height: 1.8;
+  }
+
+  .submit-btn {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .submit-btn:hover {
+    background: var(--steel);
+    transform: translateY(-1px);
+  }
+
+  .submit-btn::after {
+    content: '→';
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+
+  .submit-btn:hover::after {
+    transform: translateX(3px);
+  }
+
+  /* SUCCESS STATE */
+  .success-message {
+    display: none;
+    background: var(--black);
+    color: var(--white);
+    padding: 2rem 2.5rem;
+    margin-top: 1rem;
+    max-width: 500px;
+  }
+
+  .success-message.visible { display: block; }
+
+  .success-message h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .success-message p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--black);
+    padding: 2rem 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-logo .logo-close {
+    color: rgba(255,255,255,0.2);
+    font-size: 1.1rem;
+  }
+
+  .footer-logo .logo-socials {
+    color: rgba(72,146,188,0.3);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .field-row { grid-template-columns: 1fr; }
+    .hero::before { font-size: 38vw; }
+    .form-body, .dark-section, .white-section { padding: 3.5rem 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo">
+    <span class="logo-close">Close Social</span>
+    <span class="logo-socials">Social Media Management</span>
+  </div>
+  <p class="hero-eyebrow">New Client</p>
+  <h1>Let's understand your <em>business</em> first.</h1>
+  <p class="hero-sub">Before we meet, a few quick questions to help me come prepared. There are no right or wrong answers - just your honest take. It should take about 5 minutes.</p>
+</section>
+
+<!-- INTRO BANNER -->
+<div class="intro-banner">
+  <span class="intro-tag">No obligation</span>
+  <p class="intro-text">This form helps me make the most of our time together. Everything you share stays between us and shapes how I prepare for our first conversation.</p>
+</div>
+
+<form id="intakeForm" action="https://formspree.io/f/mlgplbbv" method="POST" onsubmit="handleSubmit(event)">
+
+  <!-- SECTION 1: ABOUT YOUR BUSINESS -->
+  <section class="form-body">
+    <div class="form-section">
+      <p class="section-label">01</p>
+      <h2 class="section-title">About your <em>business</em></h2>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Your name</label>
+          <input type="text" name="name" placeholder="First and last name" required>
+        </div>
+        <div class="field">
+          <label>Business name</label>
+          <input type="text" name="business_name" placeholder="What's the business called?" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>What do you do, and who is your ideal customer?</label>
+        <textarea name="what_you_do" placeholder="Describe what you offer and who it's for..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>What is your hero product or service?
+          <span class="optional">- the one thing you're best known for or most want to sell more of</span>
+        </label>
+        <input type="text" name="hero_product" placeholder="e.g. 60-minute yoga classes, signature facial, coffee subscription...">
+      </div>
+
+      <div class="field">
+        <label>Do you have a website?</label>
+        <div class="options-group">
+          <label class="option-item">
+            <input type="radio" name="has_website" value="yes_active">
+            <span>Yes - and it's active and up to date</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="has_website" value="yes_outdated">
+            <span>Yes - but it needs work</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="has_website" value="no_social">
+            <span>No - social media will be my main online presence</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="has_website" value="no_building">
+            <span>Not yet - but I'm planning to build one</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: YOUR SOCIAL MEDIA RIGHT NOW -->
+  <section class="dark-section">
+    <div style="max-width: 860px;">
+      <div class="form-section" style="animation-delay: 0s; opacity: 1;">
+        <p class="section-label">02</p>
+        <h2 class="section-title">Your social media <em>right now</em></h2>
+
+        <div class="field">
+          <label>Which platforms are you currently on?
+            <span class="optional">- tick all that apply</span>
+          </label>
+          <div class="options-group">
+            <label class="option-item">
+              <input type="checkbox" name="platforms" value="instagram">
+              <span>Instagram</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="platforms" value="facebook">
+              <span>Facebook</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="platforms" value="tiktok">
+              <span>TikTok</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="platforms" value="linkedin">
+              <span>LinkedIn</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="platforms" value="none">
+              <span>None yet</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>How often are you currently posting?</label>
+          <div class="options-group">
+            <label class="option-item">
+              <input type="radio" name="posting_frequency" value="daily">
+              <span>Daily or almost daily</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="posting_frequency" value="few_week">
+              <span>A few times a week</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="posting_frequency" value="occasionally">
+              <span>Occasionally - when I remember</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="posting_frequency" value="rarely">
+              <span>Rarely or not at all</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>What's your biggest frustration with social media right now?</label>
+          <textarea name="frustration" placeholder="Be honest - no judgement here..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>Have you worked with anyone on social media before?
+            <span class="optional">- agency, freelancer, or in-house</span>
+          </label>
+          <div class="options-group">
+            <label class="option-item">
+              <input type="radio" name="worked_before" value="no">
+              <span>No - this would be the first time</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="worked_before" value="yes_good">
+              <span>Yes - and it went well</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="worked_before" value="yes_bad">
+              <span>Yes - but it didn't work out</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: YOUR GOALS -->
+  <section class="white-section">
+    <div style="max-width: 860px;">
+      <div class="form-section" style="animation-delay: 0s; opacity: 1;">
+        <p class="section-label">03</p>
+        <h2 class="section-title">What you <em>want</em></h2>
+
+        <div class="field">
+          <label>What would success look like in 6 months?</label>
+          <textarea name="success_vision" placeholder="More bookings, more local awareness, a bigger following - whatever it means to you..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>What is your primary goal for being on social media?</label>
+          <div class="options-group">
+            <label class="option-item">
+              <input type="radio" name="primary_goal" value="local_awareness">
+              <span>Build local awareness and get found by people nearby</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="primary_goal" value="more_clients">
+              <span>Generate more leads and convert followers into clients</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="primary_goal" value="credibility">
+              <span>Build credibility and trust in my industry</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="primary_goal" value="wider_reach">
+              <span>Grow beyond my local area and reach a wider audience</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="primary_goal" value="all">
+              <span>All of the above - not sure where to focus yet</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Which platform would you like to prioritise?</label>
+          <div class="options-group">
+            <label class="option-item">
+              <input type="radio" name="preferred_platform" value="instagram">
+              <span>Instagram - my audience is there already</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="preferred_platform" value="tiktok">
+              <span>TikTok - I want to reach a younger audience</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="preferred_platform" value="unsure">
+              <span>Not sure - I'd like your recommendation</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: PRACTICAL BITS -->
+  <section class="form-body" style="background: var(--cream);">
+    <div class="form-section" style="opacity: 1;">
+      <p class="section-label">04</p>
+      <h2 class="section-title">A few <em>practical</em> things</h2>
+
+      <div class="field">
+        <label>Do you have brand assets ready?
+          <span class="optional">- logo, colours, fonts</span>
+        </label>
+        <div class="options-group">
+          <label class="option-item">
+            <input type="radio" name="brand_assets" value="yes_full">
+            <span>Yes - I have a full brand kit ready to go</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="brand_assets" value="yes_basic">
+            <span>Mostly - I have a logo but nothing formal</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="brand_assets" value="no">
+            <span>Not really - we'd need to build something</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Are you or your team happy to appear on camera?</label>
+        <div class="options-group">
+          <label class="option-item">
+            <input type="radio" name="on_camera" value="yes_love">
+            <span>Yes - I'm comfortable on camera</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="on_camera" value="yes_team">
+            <span>Yes - some of my team would be happy to</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="on_camera" value="warming">
+            <span>I'm warming to the idea - open to it</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="on_camera" value="no">
+            <span>Not really - I'd prefer to keep it off-camera</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>How involved do you want to be in posting?</label>
+        <div class="options-group">
+          <label class="option-item">
+            <input type="radio" name="involvement" value="hands_off">
+            <span>Fully hands off - I want you to handle everything</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="involvement" value="approve">
+            <span>I'd like to approve content before it goes out</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="involvement" value="collaborate">
+            <span>I want to stay involved and collaborate</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Do you use Canva or any other design tools already?
+          <span class="optional">- optional</span>
+        </label>
+        <input type="text" name="tools" placeholder="e.g. Canva, Adobe, nothing yet...">
+      </div>
+
+      <div class="field">
+        <label>Anything else you'd like me to know before we meet?
+          <span class="optional">- optional</span>
+        </label>
+        <textarea name="anything_else" placeholder="Budget constraints, timing, concerns, hopes - anything goes..."></textarea>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUBMIT -->
+  <div class="submit-section">
+    <p class="submit-note">That's it. I'll review your answers before we meet so we can get straight into the good stuff. Looking forward to the conversation.</p>
+    <button type="submit" class="submit-btn">Submit your answers</button>
+    <div class="success-message" id="successMsg">
+      <h3>Thank you - all received.</h3>
+      <p>I'll be in touch to confirm our meeting time. In the meantime, feel free to reply to my message if anything else comes to mind.</p>
+    </div>
+  </div>
+
+</form>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p class="footer-note">Close Social - Social Media Management - Lymington, South Coast</p>
+  <div class="footer-logo logo">
+    <span class="logo-close">Close Social</span>
+    <span class="logo-socials">Social Media Management</span>
+  </div>
+</div>
+
+<script>
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.querySelector('.submit-btn');
+    const form = document.getElementById('intakeForm');
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mlgplbbv', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        btn.textContent = 'Sent ✓';
+        btn.style.background = 'var(--steel)';
+        document.getElementById('successMsg').classList.add('visible');
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Something went wrong – try again';
+        btn.style.background = '#c0392b';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Something went wrong – try again';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>
