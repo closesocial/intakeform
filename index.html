@@ -49,6 +49,7 @@
     pointer-events: none;
     line-height: 1;
     font-style: italic;
+    z-index: 0;
   }
 
   .logo {
@@ -58,6 +59,7 @@
     line-height: 1;
     opacity: 0;
     animation: fadeUp 0.5s ease forwards 0.1s;
+    z-index: 1;
   }
 
   .logo-close {
@@ -73,14 +75,13 @@
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
     font-size: 0.48rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--steel);
     display: block;
-    margin-top: 0.08rem;
-    width: 100%;
-    text-align: justify;
-    text-align-last: justify;
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .hero-eyebrow {
@@ -219,7 +220,7 @@
     margin-left: 0.4rem;
   }
 
-  .field input,
+  .field input:not([type="checkbox"]):not([type="radio"]),
   .field textarea,
   .field select {
     width: 100%;
@@ -237,14 +238,14 @@
     border-radius: 0;
   }
 
-  .field input:focus,
+  .field input:not([type="checkbox"]):not([type="radio"]):focus,
   .field textarea:focus,
   .field select:focus {
     border-color: var(--steel);
     box-shadow: 0 0 0 3px rgba(72,146,188,0.1);
   }
 
-  .field input::placeholder,
+  .field input:not([type="checkbox"]):not([type="radio"])::placeholder,
   .field textarea::placeholder {
     color: rgba(0,0,0,0.28);
     font-style: italic;
@@ -461,6 +462,12 @@
   .footer-note {
     font-size: 0.75rem;
     color: rgba(255,255,255,0.3);
+  }
+
+  .footer-logo {
+    position: static;
+    opacity: 1;
+    animation: none;
   }
 
   .footer-logo .logo-close {
